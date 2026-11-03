@@ -7,7 +7,7 @@ function Intruso() {
   const [indice, setIndice] = useState(0);
   const [mensaje, setMensaje] = useState("");
   const navigate = useNavigate();
-  const { puntaje, sumarPunto } = usePuntaje();
+  const { puntajeJuego2, sumarPuntoJuego2 } = usePuntaje();
 
   const [nombreRonda, ronda] = Object.entries(preguntas[indice])[0];
 
@@ -16,7 +16,7 @@ function Intruso() {
 
     const esCorrecta = opcion.toLowerCase() === ronda.Instruso.toLowerCase();
     setMensaje(esCorrecta ? "¡Correcto!" : "Incorrecto.");
-    if (esCorrecta) sumarPunto();
+    if (esCorrecta) sumarPuntoJuego2();
 
     setTimeout(() => {
       if (indice === preguntas.length - 1) {
@@ -32,7 +32,7 @@ function Intruso() {
   return (
     <div>
       <h1>INTRUSO</h1>
-      <p className="puntaje">Puntaje: {puntaje}</p>
+      <p className="puntaje">Puntaje: {puntajeJuego2}</p>
       <h2 className="h1">Ronda {indice + 1}</h2>
       <h2>Selecciona el intruso</h2>
       <div className="div">

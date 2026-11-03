@@ -9,18 +9,18 @@ function HoraComer() {
   const [indice, setIndice] = useState(0);
   const [mensaje, setMensaje] = useState("");
   const navigate = useNavigate();
-  const { puntaje, sumarPunto } = usePuntaje();
+  const { puntajeJuego1, sumarPuntoJuego1 } = usePuntaje();
 
   const numeroRonda = indice + 1;
   const [animal, ronda] = Object.entries(preguntas[indice])[0];
 
-    const seleccionarOpcion = (opcion) => {
-      if (mensaje) return;
+  const seleccionarOpcion = (opcion) => {
+    if (mensaje) return;
 
-      const esCorrecta =
-        opcion.toLowerCase() === ronda.Correcta.toLowerCase();
-      setMensaje(esCorrecta ? "¡Correcto!" : "Incorrecto");
-      if (esCorrecta) sumarPunto();
+    const esCorrecta =
+      opcion.toLowerCase() === ronda.Correcta.toLowerCase();
+    setMensaje(esCorrecta ? "¡Correcto!" : "Incorrecto");
+    if (esCorrecta) sumarPuntoJuego1();
 
     setTimeout(() => {
       if (indice === preguntas.length - 1) {
@@ -28,15 +28,15 @@ function HoraComer() {
         return;
       }
 
-        setIndice((actual) => actual + 1);
-        setMensaje("");
+      setIndice((actual) => actual + 1);
+      setMensaje("");
     }, 1000);
   };
 
   return (
     <>
       <div>
-        <p className="puntaje">Puntaje: {puntaje}</p>
+        <p className="puntaje">Puntaje: {puntajeJuego1}</p>
         <h1 className="h1">Ronda {numeroRonda}</h1>
         <Image
           src={ronda.img}
