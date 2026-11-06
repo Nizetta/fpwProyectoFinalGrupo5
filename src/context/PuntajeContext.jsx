@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from "react";
 
 const PuntajeContext = createContext(null);
 
-export function PuntajeProvider({ children }) {
+export const PuntajeProvider = ({ children }) => {
   const [nombreJugador, setNombreJugador] = useState("");
   const [puntajeJuego1, setPuntajeJuego1] = useState(0);
   const [puntajeJuego2, setPuntajeJuego2] = useState(0);
@@ -33,7 +33,7 @@ export function PuntajeProvider({ children }) {
   );
 }
 
-export function usePuntaje() {
+export const usePuntaje = () => {
   const context = useContext(PuntajeContext);
   if (!context) {
     throw new Error("usePuntaje debe usarse dentro de PuntajeProvider");

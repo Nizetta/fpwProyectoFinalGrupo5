@@ -18,7 +18,7 @@ export const preguntas = [
         { nombre: "Gato", imagen: gato },
         { nombre: "León", imagen: leon },
       ],
-      Instruso: "León",
+      Intruso: "León",
     },
   },
   {
@@ -28,7 +28,7 @@ export const preguntas = [
         { nombre: "Oveja", imagen: oveja },
         { nombre: "Cocodrilo", imagen: cocodrilo },
       ],
-      Instruso: "Cocodrilo",
+      Intruso: "Cocodrilo",
     },
   },
   {
@@ -38,7 +38,7 @@ export const preguntas = [
         { nombre: "Chancho", imagen: chancho },
         { nombre: "Elefante", imagen: elefante },
       ],
-      Instruso: "Elefante",
+      Intruso: "Elefante",
     },
   },
   {
@@ -48,7 +48,7 @@ export const preguntas = [
         { nombre: "Vaca", imagen: vaca },
         { nombre: "Tiburón", imagen: tiburon },
       ],
-      Instruso: "Tiburón",
+      Intruso: "Tiburón",
     },
   },
   {
@@ -58,7 +58,7 @@ export const preguntas = [
         { nombre: "Perro", imagen: perro },
         { nombre: "Pingüino", imagen: pingüino },
       ],
-      Instruso: "Pingüino",
+      Intruso: "Pingüino",
     },
   },
 ];

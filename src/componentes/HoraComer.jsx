@@ -5,7 +5,7 @@ import { preguntas } from "../data/juego1";
 import { usePuntaje } from "../context/PuntajeContext.jsx";
 import "./HoraComer.css";
 
-function HoraComer() {
+const HoraComer = () => {
   const [indice, setIndice] = useState(0);
   const [mensaje, setMensaje] = useState("");
   const navigate = useNavigate();
