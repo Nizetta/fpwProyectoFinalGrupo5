@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "nombre": "Maestra",
+    "email": "maestra@escuela.com",
+    "password": "123456"
+  },
+  {
+    "id": 2,
+    "nombre": "Director",
+    "email": "director@escuela.com",
+    "password": "789456"
+  },
+  {
+    "id": 3,
+    "nombre": "Maestra",
+    "email": "Daniela_Zeta25@yahoo.com",
+    "password": "654321"
+  }
+]

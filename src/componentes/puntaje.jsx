@@ -17,9 +17,32 @@ export const Puntaje = () => {
   }
 
   const handleJugarDeNuevo = () => {
-    reiniciarJuego();
-    navigate("/");
+  // Recuperar los resultados guardados anteriormente
+  const resultadosGuardados =
+    JSON.parse(localStorage.getItem("resultadosAlumnos")) || [];
+
+  // Preparar el resultado de este alumno
+  const nuevoResultado = {
+    id: Date.now(),
+    nombre: nombreJugador,
+    puntajeJuego1: puntajeJuego1,
+    puntajeJuego2: puntajeJuego2,
+    puntajeTotal: puntajeTotal,
   };
+
+  // Agregar el nuevo resultado a la lista
+  resultadosGuardados.push(nuevoResultado);
+
+  // Guardar la lista actualizada
+  localStorage.setItem(
+    "resultadosAlumnos",
+    JSON.stringify(resultadosGuardados)
+  );
+
+  // Reiniciar el juego y volver a HOME
+  reiniciarJuego();
+  navigate("/");
+};
 
   return (
     <main style={{ textAlign: "center", padding: "2rem" }}>
