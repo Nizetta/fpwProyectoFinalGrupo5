@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { preguntas } from "../data/juego2";
 import { usePuntaje } from "../context/PuntajeContext.jsx";
 
-function Intruso() {
+const Intruso = () => {
   const [indice, setIndice] = useState(0);
   const [mensaje, setMensaje] = useState("");
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ function Intruso() {
   const seleccionarOpcion = (opcion) => {
     if (mensaje) return;
 
-    const esCorrecta = opcion.toLowerCase() === ronda.Instruso.toLowerCase();
+    const esCorrecta = opcion.toLowerCase() === ronda.Intruso.toLowerCase();
     setMensaje(esCorrecta ? "¡Correcto!" : "Incorrecto.");
     if (esCorrecta) sumarPuntoJuego2();
 

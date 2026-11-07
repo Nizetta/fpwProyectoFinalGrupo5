@@ -6,7 +6,7 @@ import { usePuntaje } from "../context/PuntajeContext.jsx";
 export const Inicio = () => {
   const [nombre, setNombre] = useState("");
   const navigate = useNavigate();
-  const { setNombreJugador } = usePuntaje();
+  const { setNombreJugador, esMaestra } = usePuntaje();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,9 +21,13 @@ export const Inicio = () => {
     <Container className="py-5">
       <h1 className="text-success fw-bold mb-4 display-4">Inicio</h1>
       
-      <Form onSubmit={handleSubmit} className="p-3 mx-auto" style={{ maxWidth: '400px' }}>
+      <Form onSubmit={handleSubmit} className="p-3 mx-auto" 
+      style={{ maxWidth: '400px' }}
+      >
+
         <Form.Group className="mb-2" controlId="nombreJugador">
           <Form.Label>Nombre del jugador</Form.Label>
+
           <Form.Control
             className="mb-2"
             type="text" 
@@ -39,6 +43,25 @@ export const Inicio = () => {
           Comenzar
         </Button>
       </Form>
+
+    <div className="text-center mt-4">
+        {!esMaestra ? (
+  <Button
+    variant="outline-primary"
+    onClick={() => navigate("/LoginMaestra")}
+  >
+    Acceso Maestra
+  </Button>
+  ) : (
+  <Button
+    variant="success"
+    onClick={() => navigate("/Resultados")}
+  >
+    Otra página
+  </Button>
+)}
+      </div>
+
     </Container>
   );
 };
