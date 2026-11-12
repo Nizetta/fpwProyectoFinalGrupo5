@@ -1,9 +1,13 @@
-import Image from "react-bootstrap/Image";
-import { useState } from "react";
+import {Image } from "react-bootstrap";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { preguntas } from "../data/juego1";
 import { usePuntaje } from "../context/PuntajeContext.jsx";
-import "./HoraComer.css";
+import correcto from "../assets/correcto.png";
+import incorrecto from "../assets/incorrecto.png";
+import sonidoCorrecto from "../assets/correct.wav";
+import sonidoIncorrecto from "../assets/incorrect.wav";
+import "./estilos.css";
 
 const HoraComer = () => {
   const [indice, setIndice] = useState(0);
@@ -32,32 +36,53 @@ const HoraComer = () => {
       setMensaje("");
     }, 1000);
   };
+  useEffect(() => {
+    let archivoSonido;
+
+    if (mensaje === "¡Correcto!") {
+      archivoSonido = sonidoCorrecto;
+    } else if (mensaje === "Incorrecto") {
+      archivoSonido = sonidoIncorrecto;
+    } else {
+      return;
+    }
+
+    const audio = new Audio(archivoSonido);
+    audio.play().catch((error) => {
+      console.error("No se pudo reproducir el audio.", error);
+    });
+  }, [mensaje]);
 
   return (
     <>
-      <div>
+      <div className="div">
+        <h1 className="h1">¿Que come el {animal}?</h1>
         <p className="puntaje">Puntaje: {puntajeJuego1}</p>
         <h1 className="h1">Ronda {numeroRonda}</h1>
         <Image
           src={ronda.img}
           alt={`imagen de la ronda ${numeroRonda}`}
-          width={300}
-          roundedCircle
+          width={230}
+
         />
         <h2>{animal}</h2>
         <div className="div">
           {ronda.opciones.map((opcion) => (
             <button
-              className="boton"
+              className="boton-comer"
               key={opcion}
-              onClick={() => seleccionarOpcion(opcion)}
-              disabled={Boolean(mensaje)}
-            >
+              onClick={() => seleccionarOpcion(opcion)}>
               {opcion}
             </button>
           ))}
         </div>
-        {mensaje && <p role="status">{mensaje}</p>}
+        {mensaje && (
+          <Image
+            src={mensaje === "¡Correcto!" ? correcto : incorrecto}
+            width={100}
+            role="status"
+          />
+        )}
       </div>
     </>
   );

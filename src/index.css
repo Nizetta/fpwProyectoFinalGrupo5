@@ -1,9 +1,9 @@
 :root {
   --text: #6b6375;
   --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
+  --bg:#E8F9FF;
+  --border: #E8F9FF;
+  --code-bg: #E8F9FF;
   --accent: #aa3bff;
   --accent-bg: rgba(170, 59, 255, 0.1);
   --accent-border: rgba(170, 59, 255, 0.5);
@@ -51,11 +51,11 @@
 }
 
 body {
-  margin: 0;
+  margin: 0px ;
 }
 
 #root {
-  width: 1126px;
+  width: 99%;
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
@@ -64,6 +64,7 @@ body {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  justify-content: center;
 }
 
 h1,
