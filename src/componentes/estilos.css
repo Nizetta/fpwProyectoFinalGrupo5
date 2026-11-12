@@ -1,0 +1,66 @@
+
+*{
+   margin: 0;
+   padding: 0;
+    box-sizing: border-box;
+    background-color:#E8F9FF;
+    position: center;
+   
+}
+h1,h2,.div{
+    color: #FF8C42;
+    text-shadow: 1px 1px 0px #FFD93D;
+    
+}
+.titulo{
+    color: #000000;
+    font-size: 40px;
+}
+.table-alumno{
+    font-size: 15px;
+    border: 1px solid #000000;
+    background-color: #E8F9FF;
+   
+}
+
+
+.boton-comer{
+    background: #4D96FF;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 15px 25px;
+    font-size: 22px;
+    font-weight: bold;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    transition: .2s;
+    margin: 10px;
+}
+button:hover{
+    transform: scale(1.05);
+}
+.boton-intruso{
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    height: 150px;
+    margin: 5px;
+    width: 100px;   
+    height: 150px;
+    font-size: 15px;
+    background-color: #96e7ea;
+    color: #000000;
+}
+.boton-animal:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+.boton-animal:active{
+    transform: scale(0.95);
+}
+
+.puntaje {
+    margin: 12px 0;
+    font-weight: 700;
+}
