@@ -16,6 +16,13 @@ export const Inicio = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!email.trim() || !contrasena.trim()) {
+      navigate("/Error", {
+        state: { mensaje: "Error debe completar correctamente el campo" },
+      });
+      return;
+    }
+
     const usuarioEncontrado = iniciarSesion(email, contrasena);
 
     if (usuarioEncontrado) {
@@ -25,7 +32,9 @@ export const Inicio = () => {
         navigate("/HoraComer");
       }
     } else {
-      setMensaje("Email o contraseña incorrectos.");
+      navigate("/Error", {
+        state: { mensaje: "Error debe completar correctamente el campo" },
+      });
     }
   };
 
@@ -53,6 +62,7 @@ export const Inicio = () => {
                 </h1>
 
                 <Form
+                  noValidate
                   onSubmit={handleSubmit}
                   className="p-3 mx-auto"
                   style={{ maxWidth: "400px" }}

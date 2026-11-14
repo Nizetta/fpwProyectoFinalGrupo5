@@ -28,6 +28,10 @@ const router = createBrowserRouter([
     element: <Error />,
   },
   {
+    path: "/error",
+    element: <Error />,
+  },
+  {
     path: "/HoraComer",
     element: <HoraComer />,
   },
