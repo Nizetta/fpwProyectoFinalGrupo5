@@ -8,9 +8,7 @@ export const PuntajeProvider = ({ children }) => {
   const [puntajeJuego1, setPuntajeJuego1] = useState(0);
   const [puntajeJuego2, setPuntajeJuego2] = useState(0);
 
-  /*const [esMaestra, setEsMaestra] = useState(false);
- const [usuarioActual, setUsuarioActual] = useState(null);*/
- const [usuarioActual, setUsuarioActual] = useState(() => {
+   const [usuarioActual, setUsuarioActual] = useState(() => {
   const usuarioGuardado = localStorage.getItem("usuarioActual");
   return usuarioGuardado ? JSON.parse(usuarioGuardado) : null;
 });
@@ -42,17 +40,6 @@ const [esMaestra, setEsMaestra] = useState(() => {
         usuario.password === contrasena
     );
 
-   /* if (usuarioEncontrado) {
-      setUsuarioActual(usuarioEncontrado);
-
-      if (usuarioEncontrado.rol === "admin") {
-        setEsMaestra(true);
-      } else {
-        setEsMaestra(false);
-        setNombreJugador(usuarioEncontrado.nombre);
-      }
-
-      return usuarioEncontrado;*/
       if (usuarioEncontrado) {
   setUsuarioActual(usuarioEncontrado);
 
@@ -85,12 +72,6 @@ const [esMaestra, setEsMaestra] = useState(() => {
     return null;
   };
 
-  // Cerrar sesión del usuario
- /* const cerrarSesionMaestra = () => {
-    setEsMaestra(false);
-    setUsuarioActual(null);
-    setNombreJugador("");
-  };*/
 
   const cerrarSesionMaestra = () => {
   setEsMaestra(false);
