@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import administradores from "../data/administradores.json";
+import usuarios from "../data/usuarios.json";
 
 const PuntajeContext = createContext(null);
 
@@ -8,7 +8,23 @@ export const PuntajeProvider = ({ children }) => {
   const [puntajeJuego1, setPuntajeJuego1] = useState(0);
   const [puntajeJuego2, setPuntajeJuego2] = useState(0);
 
-  const [esMaestra, setEsMaestra] = useState(false);
+  /*const [esMaestra, setEsMaestra] = useState(false);
+ const [usuarioActual, setUsuarioActual] = useState(null);*/
+ const [usuarioActual, setUsuarioActual] = useState(() => {
+  const usuarioGuardado = localStorage.getItem("usuarioActual");
+  return usuarioGuardado ? JSON.parse(usuarioGuardado) : null;
+});
+
+const [esMaestra, setEsMaestra] = useState(() => {
+  const usuarioGuardado = localStorage.getItem("usuarioActual");
+
+  if (usuarioGuardado) {
+    const usuario = JSON.parse(usuarioGuardado);
+    return usuario.rol === "admin";
+  }
+
+  return false;
+});
 
   const sumarPuntoJuego1 = () => {
     setPuntajeJuego1((actual) => actual + 10);
@@ -18,24 +34,72 @@ export const PuntajeProvider = ({ children }) => {
     setPuntajeJuego2((actual) => actual + 10);
   };
 
-  const iniciarSesionMaestra = (email, contraseña) => {
-  const administradorEncontrado = administradores.find(
-    (admin) =>
-      admin.email.toLowerCase() === email.trim().toLowerCase() &&
-      admin.password === contraseña
-  );
+    // Validar el ingreso de cualquier usuario
+  const iniciarSesion = (email, contrasena) => {
+    const usuarioEncontrado = usuarios.find(
+      (usuario) =>
+        usuario.email.toLowerCase() === email.trim().toLowerCase() &&
+        usuario.password === contrasena
+    );
 
-  if (administradorEncontrado) {
+   /* if (usuarioEncontrado) {
+      setUsuarioActual(usuarioEncontrado);
+
+      if (usuarioEncontrado.rol === "admin") {
+        setEsMaestra(true);
+      } else {
+        setEsMaestra(false);
+        setNombreJugador(usuarioEncontrado.nombre);
+      }
+
+      return usuarioEncontrado;*/
+      if (usuarioEncontrado) {
+  setUsuarioActual(usuarioEncontrado);
+
+  if (usuarioEncontrado.rol === "admin") {
     setEsMaestra(true);
-    return true;
+
+    // Guardar solamente los datos necesarios del administrador
+    const datosMaestra = {
+      id: usuarioEncontrado.id,
+      nombre: usuarioEncontrado.nombre,
+      email: usuarioEncontrado.email,
+      rol: usuarioEncontrado.rol,
+    };
+
+    localStorage.setItem(
+      "usuarioActual",
+      JSON.stringify(datosMaestra)
+    );
+
+  } else {
+    setEsMaestra(false);
+    localStorage.removeItem("usuarioActual");
+    setNombreJugador(usuarioEncontrado.nombre);
   }
 
-  return false;
-};
+  return usuarioEncontrado;
+}
+    
+
+    return null;
+  };
+
+  // Cerrar sesión del usuario
+ /* const cerrarSesionMaestra = () => {
+    setEsMaestra(false);
+    setUsuarioActual(null);
+    setNombreJugador("");
+  };*/
 
   const cerrarSesionMaestra = () => {
-    setEsMaestra(false);
-  }
+  setEsMaestra(false);
+  setUsuarioActual(null);
+  setNombreJugador("");
+
+  localStorage.removeItem("usuarioActual");
+};
+
 
   const reiniciarJuego = () => {
     setNombreJugador("");
@@ -49,7 +113,8 @@ export const PuntajeProvider = ({ children }) => {
       puntajeJuego1, sumarPuntoJuego1, 
       puntajeJuego2, sumarPuntoJuego2,
       reiniciarJuego,
-      esMaestra, iniciarSesionMaestra, cerrarSesionMaestra,
+      esMaestra, usuarioActual,
+       iniciarSesion, cerrarSesionMaestra,
       
     }}>
       {children}

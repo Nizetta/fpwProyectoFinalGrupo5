@@ -1,0 +1,52 @@
+[
+      
+  {
+    "id": 1,
+    "nombre": "Maestra",
+    "email": "maestra@escuela.com",
+    "password": "123456",
+    "rol": "admin"
+  },
+  {
+    "id": 2,
+    "nombre": "Director",
+    "email": "director@escuela.com",
+    "password": "789456",
+    "rol": "admin"
+  },
+  {
+    "id": 3,
+    "nombre": "Maestra",
+    "email": "Daniela_Zeta25@yahoo.com",
+    "password": "654321",
+    "rol": "admin"
+  },
+  {
+    "id": 4,
+    "nombre": "carlos",
+    "email": "carlos@escuela.com",
+    "password": "987654",
+    "rol": "alumno"
+  },
+  {
+    "id": 5,
+    "nombre": "pedro",
+    "email": "pedro@escuela.com",
+    "password": "321654",
+    "rol": "alumno"
+  },
+  {
+    "id": 6,
+    "nombre": "juan",
+    "email": "juan@escuela.com",
+    "password": "654987",
+    "rol": "alumno"
+  },
+  {
+    "id": 7,
+    "nombre": "maria",
+    "email": "maria@escuela.com",
+    "password": "159753",
+    "rol": "alumno"
+  }
+]
