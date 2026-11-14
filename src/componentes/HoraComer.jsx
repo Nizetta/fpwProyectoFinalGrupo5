@@ -7,7 +7,7 @@ import correcto from "../assets/correcto.png";
 import incorrecto from "../assets/incorrecto.png";
 import sonidoCorrecto from "../assets/correct.wav";
 import sonidoIncorrecto from "../assets/incorrect.wav";
-import "./estilos.css";
+import "../css/estilos.css";
 
 const HoraComer = () => {
   const [indice, setIndice] = useState(0);
