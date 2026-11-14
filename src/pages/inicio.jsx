@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Form, Button } from "react-bootstrap";
@@ -5,15 +6,26 @@ import { usePuntaje } from "../context/PuntajeContext.jsx";
 import Alumno from "../componentes/Alumno.jsx";
 
 export const Inicio = () => {
-  const [nombre, setNombre] = useState("");
+  const [email, setEmail] = useState("");
+  const [contrasena, setContrasena] = useState("");
+  const [mensaje, setMensaje] = useState("");
+
   const navigate = useNavigate();
-  const { setNombreJugador, esMaestra } = usePuntaje();
+  const { iniciarSesion } = usePuntaje();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (nombre.trim() !== "") {
-      setNombreJugador(nombre);
-      navigate("/HoraComer");
+
+    const usuarioEncontrado = iniciarSesion(email, contrasena);
+
+    if (usuarioEncontrado) {
+      if (usuarioEncontrado.rol === "admin") {
+        navigate("/resultados");
+      } else {
+        navigate("/HoraComer");
+      }
+    } else {
+      setMensaje("Email o contraseña incorrectos.");
     }
   };
 
@@ -27,56 +39,68 @@ export const Inicio = () => {
           <col style={{ width: "50%" }} />
           <col style={{ width: "70%" }} />
         </colgroup>
+
         <tbody>
           <tr>
             <td>
               <Alumno />
             </td>
+
             <td>
               <Container className="py-5">
-                <h1 className="text-success fw-bold mb-4 display-4">Inicio</h1>
+                <h1 className="text-success fw-bold mb-4 display-4">
+                  La Granja
+                </h1>
 
                 <Form
                   onSubmit={handleSubmit}
                   className="p-3 mx-auto"
                   style={{ maxWidth: "400px" }}
                 >
-                  <Form.Group className="mb-2" controlId="nombreJugador">
-                    <Form.Label>Nombre del jugador</Form.Label>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Email</Form.Label>
 
                     <Form.Control
-                      className="mb-2"
-                      type="text"
-                      placeholder="Ingresa tu nombre"
-                      value={nombre}
-                      onChange={(e) => setNombre(e.target.value)}
+                      type="email"
+                      placeholder="Ingresa tu email"
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                        setMensaje("");
+                      }}
                       required
-                      autoComplete="new-password"
                     />
                   </Form.Group>
 
-                  <Button variant="success" type="submit">
-                    Comenzar
+                  <Form.Group className="mb-3">
+                    <Form.Label>Contraseña</Form.Label>
+
+                    <Form.Control
+                      type="password"
+                      placeholder="Ingresa tu contraseña"
+                      value={contrasena}
+                      onChange={(e) => {
+                        setContrasena(e.target.value);
+                        setMensaje("");
+                      }}
+                      required
+                    />
+                  </Form.Group>
+
+                  {mensaje && (
+                    <p className="text-danger" role="alert">
+                      {mensaje}
+                    </p>
+                  )}
+
+                  <Button
+                    variant="success"
+                    type="submit"
+                    className="px-4"
+                  >
+                    Ingresar
                   </Button>
                 </Form>
-
-                <div className="text-center mt-4">
-                  {!esMaestra ? (
-                    <Button
-                      variant="outline-primary"
-                      onClick={() => navigate("/LoginMaestra")}
-                    >
-                      Acceso Maestra
-                    </Button>
-                  ) : (
-                    <Button
-                      variant="success"
-                      onClick={() => navigate("/Resultados")}
-                    >
-                      Otra página
-                    </Button>
-                  )}
-                </div>
               </Container>
             </td>
           </tr>
