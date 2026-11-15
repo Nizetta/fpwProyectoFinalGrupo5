@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { usePuntaje } from "../context/PuntajeContext.jsx";
+import { guardarResultado } from "../services/servicioResultados.js";
+
 
 export const Puntaje = () => {
   const { nombreJugador, puntajeJuego1, puntajeJuego2, reiniciarJuego } = usePuntaje();
@@ -17,9 +19,6 @@ export const Puntaje = () => {
   }
 
   const handleJugarDeNuevo = () => {
-  // Recuperar los resultados guardados anteriormente
-  const resultadosGuardados =
-    JSON.parse(localStorage.getItem("resultadosAlumnos")) || [];
 
   // Preparar el resultado de este alumno
   const nuevoResultado = {
@@ -30,16 +29,10 @@ export const Puntaje = () => {
     puntajeTotal: puntajeTotal,
   };
 
-  // Agregar el nuevo resultado a la lista
-  resultadosGuardados.push(nuevoResultado);
+  // Guardar el resultado utilizando el servicio
+  guardarResultado(nuevoResultado);
 
-  // Guardar la lista actualizada
-  localStorage.setItem(
-    "resultadosAlumnos",
-    JSON.stringify(resultadosGuardados)
-  );
-
-  // Reiniciar el juego y volver a HOME
+  // Reiniciar el juego y volver a Inicio
   reiniciarJuego();
   navigate("/");
 };

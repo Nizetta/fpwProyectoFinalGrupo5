@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Table, Button } from "react-bootstrap";
 import { usePuntaje } from "../context/PuntajeContext.jsx";
+import { obtenerResultados } from "../services/servicioResultados.js";
+
 
 const Resultados = () => {
   const [resultados, setResultados] = useState([]);
@@ -15,15 +17,15 @@ const Resultados = () => {
 };
 
   useEffect(() => {
+    
     if (!esMaestra) {
       navigate("/");
       return;
     }
 
-    const datosGuardados =
-      JSON.parse(localStorage.getItem("resultadosAlumnos")) || [];
-
-    setResultados(datosGuardados);
+    const resultadosGuardados = obtenerResultados();
+    setResultados(resultadosGuardados);
+    
   }, [esMaestra, navigate]);
 
   if (!esMaestra) {
