@@ -1,17 +1,20 @@
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import { preguntas } from "../data/juego2";
 import { usePuntaje } from "../context/PuntajeContext.jsx";
 import { Image } from "react-bootstrap";
 import correcto from "../assets/correcto.png";
 import incorrecto from "../assets/incorrecto.png";
+import sonidoCorrecto from "../assets/correct.wav";
+import sonidoIncorrecto from "../assets/incorrect.wav";
+
 
 
 const Intruso = () => {
   const [indice, setIndice] = useState(0);
   const [mensaje, setMensaje] = useState("");
   const navigate = useNavigate();
-  const { puntajeJuego2, sumarPuntoJuego2 } = usePuntaje();
+  const { puntajeJuego2, sumarPuntoJuego2 , esMaestra} = usePuntaje();
 
   const [nombreRonda, ronda] = Object.entries(preguntas[indice])[0];
 
@@ -32,9 +35,32 @@ const Intruso = () => {
       setMensaje("");
     }, 1000);
   };
+  useEffect(() => {
+    let archivoSonido;
+    if (mensaje === "¡Correcto!") {
+      archivoSonido = sonidoCorrecto;
+    } else if (mensaje === "Incorrecto.") {
+      archivoSonido = sonidoIncorrecto;
+    } else {
+      return;
+    }
+    const sonido = new Audio(archivoSonido);
+    sonido.play().catch((error) => {
+      console.error("No se pudo reproducir el audio.", error);
+    });
+  }, [mensaje]);
 
   return (
     <div>
+      {esMaestra && (
+        <button
+          type="button"
+          className="btn btn-primary mt-3"
+          onClick={() => navigate("/resultados")}
+        >
+          Volver a Resultados
+        </button>
+      )}
       <h1 className="h1">¿Quién es el intruso?</h1>
       <p className="puntaje">Puntaje: {puntajeJuego2}</p>
       <h2 className="h2">Ronda {indice + 1}</h2>
