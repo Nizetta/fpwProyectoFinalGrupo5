@@ -13,7 +13,7 @@ const HoraComer = () => {
   const [indice, setIndice] = useState(0);
   const [mensaje, setMensaje] = useState("");
   const navigate = useNavigate();
-  const { puntajeJuego1, sumarPuntoJuego1 } = usePuntaje();
+  const { puntajeJuego1, sumarPuntoJuego1, esMaestra } = usePuntaje();
 
   const numeroRonda = indice + 1;
   const [animal, ronda] = Object.entries(preguntas[indice])[0];
@@ -56,6 +56,15 @@ const HoraComer = () => {
   return (
     <>
       <div className="div">
+        {esMaestra && (
+          <button
+            type="button"
+            className="btn btn-primary mt-3"
+            onClick={() => navigate("/resultados")}
+          >
+            Volver a Resultados
+          </button>
+        )}
         <h1 className="h1">¿Que come el {animal}?</h1>
         <p className="puntaje">Puntaje: {puntajeJuego1}</p>
         <h1 className="h1">Ronda {numeroRonda}</h1>
@@ -63,7 +72,6 @@ const HoraComer = () => {
           src={ronda.img}
           alt={`imagen de la ronda ${numeroRonda}`}
           width={230}
-
         />
         <h2>{animal}</h2>
         <div className="div">
@@ -71,7 +79,8 @@ const HoraComer = () => {
             <button
               className="boton-comer"
               key={opcion}
-              onClick={() => seleccionarOpcion(opcion)}>
+              onClick={() => seleccionarOpcion(opcion)}
+            >
               {opcion}
             </button>
           ))}

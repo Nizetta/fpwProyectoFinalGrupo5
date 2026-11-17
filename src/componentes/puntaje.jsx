@@ -34,7 +34,7 @@ export const Puntaje = () => {
 
   // Reiniciar el juego y volver a Inicio
   reiniciarJuego();
-  navigate("/");
+  navigate("/HoraComer");
 };
 
   return (
@@ -57,6 +57,14 @@ export const Puntaje = () => {
         style={{ padding: "10px 20px", fontSize: "1.2rem", cursor: "pointer" }}
       >
         Jugar de nuevo
+      </button>
+
+      <button
+        className="boton btn btn-primary"
+        onClick={() => navigate("/")}
+        style={{ padding: "10px 20px", fontSize: "1.2rem", cursor: "pointer", marginLeft: "1rem" }}
+      >
+        Cerrar sesión
       </button>
     </main>
   );
