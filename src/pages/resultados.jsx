@@ -15,6 +15,12 @@ const Resultados = () => {
   cerrarSesionMaestra();
   navigate("/");
 };
+const juego1 = () => {
+  navigate("/HoraComer");
+}
+const juego2 = () => {
+  navigate("/Intruso");
+}
 
   useEffect(() => {
     
@@ -34,6 +40,17 @@ const Resultados = () => {
 
   return (
     <Container className="py-5">
+      <div className="d-flex justify-content-center flex-wrap gap-3 mt-4">
+        <Button variant="danger" onClick={handleCerrarSesion}>
+          Cerrar sesión
+        </Button>
+        <Button variant="primary" onClick={juego1}>
+          ir al juego 1
+        </Button>
+        <Button variant="primary" onClick={juego2}>
+          ir al juego 2
+        </Button>
+      </div>
       <h1 className="text-success fw-bold text-center mb-4">
         Resultados de los alumnos
       </h1>
@@ -69,12 +86,6 @@ const Resultados = () => {
           )}
         </tbody>
       </Table>
-
-   <div className="text-center mt-4">
-   <Button variant="danger" onClick=     {handleCerrarSesion}>
-      Finalizar sesión
-     </Button>
-    </div>
     </Container>
   );
 };
