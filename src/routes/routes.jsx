@@ -10,10 +10,9 @@ import RutaProtegida from "../componentes/RutaProtegida.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Outlet />, // <-- Único agregado: la ruta padre
+    element: <Outlet />,
     errorElement: <Error />,
     children: [
-      // Todas tus rutas exactamente iguales a como las tenías:
       {
         path: "/",
         element: <Inicio />,

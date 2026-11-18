@@ -32,7 +32,6 @@ const [esMaestra, setEsMaestra] = useState(() => {
     setPuntajeJuego2((actual) => actual + 10);
   };
 
-    // Validar el ingreso de cualquier usuario
   const iniciarSesion = (email, contrasena) => {
     const usuarioEncontrado = usuarios.find(
       (usuario) =>
@@ -46,7 +45,6 @@ const [esMaestra, setEsMaestra] = useState(() => {
   if (usuarioEncontrado.rol === "admin") {
     setEsMaestra(true);
 
-    // Guardar solamente los datos necesarios del administrador
     const datosMaestra = {
       id: usuarioEncontrado.id,
       nombre: usuarioEncontrado.nombre,
