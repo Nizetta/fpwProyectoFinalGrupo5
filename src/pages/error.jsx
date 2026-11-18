@@ -8,7 +8,10 @@ export const Error = () => {
   const [segundos, setSegundos] = useState(3);
 
   const mensaje =
-    location.state?.mensaje || "Error debe completar correctamente los campos";
+    location.state?.mensaje ||
+    (location.pathname === "/Error" || location.pathname === "/error"
+      ? "Error debe completar correctamente los campos"
+      : "Error: la página no existe o la URL ingresada no es válida");
 
   useEffect(() => {
     const timer = setInterval(() => {

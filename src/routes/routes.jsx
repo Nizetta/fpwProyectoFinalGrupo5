@@ -11,6 +11,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Outlet />, // <-- Único agregado: la ruta padre
+    errorElement: <Error />,
     children: [
       // Todas tus rutas exactamente iguales a como las tenías:
       {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
         element: <Error />,
       },
       {
+        path: "/error",
+        element: <Error />,
+      },
+      {
         path: "/HoraComer",
         element: <HoraComer />,
       },
@@ -40,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/Puntaje",
         element: <Puntaje />,
+      },
+      {
+        path: "*",
+        element: <Error />,
       },
     ],
   },
